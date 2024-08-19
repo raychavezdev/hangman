@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>Hang Man</title>
+  </head>
+
+  <body>
+
+    <header class="header">
+      <div class="container flex-center">
+        <a href="/" class="logo flex-center">HangMan</a>
+
+        <span class="header-level"></span>
+      </div>
+    </header>
+
+    <main class="main  flex-center">
+      <div class="container">
+        <div class="modal flex-center hide">
+          <p class="modal-text"></p>
+          <div class="modal-buttons flex-center">
+            <button class="modal-btn1"></button>
+            <button class="modal-btn2"></button>
+          </div>
+        </div>
+        <div class="game-container">
+          <button class="btn-start">
+            <span class="level"></span>
+          </button>
+
+          <section class="hang-container flex-center">
+            <canvas class="canvas" width="95" height="200"> </canvas>
+          </section>
+          <section class="word flex-center"></section>
+          <section class="keyboard flex-center">
+            <div class="first-row flex-center">
+              <button class="key">Q</button>
+              <button class="key">W</button>
+              <button class="key vocal">E</button>
+              <button class="key">R</button>
+              <button class="key">T</button>
+              <button class="key">Y</button>
+              <button class="key vocal">U</button>
+              <button class="key vocal">I</button>
+              <button class="key vocal">O</button>
+              <button class="key">P</button>
+            </div>
+            <div class="second-row flex-center">
+              <button class="key vocal">A</button>
+              <button class="key">S</button>
+              <button class="key">D</button>
+              <button class="key">F</button>
+              <button class="key">G</button>
+              <button class="key">H</button>
+              <button class="key">J</button>
+              <button class="key">K</button>
+              <button class="key">L</button>
+            </div>
+            <div class="third-row flex-center">
+              <button class="key">Z</button>
+              <button class="key">X</button>
+              <button class="key">C</button>
+              <button class="key">V</button>
+              <button class="key">B</button>
+              <button class="key">N</button>
+              <button class="key">M</button>
+            </div>
+            <div class="powers flex-center">
+              <button class="btn-back flex-center">
+                <img src="/icons/borrador.png" alt="icono de borrador" />
+              </button>
+              <button class="btn-clue flex-center">
+                <img src="/icons/pista.png" alt="icono de pista" />
+              </button>
+            </div>
+
+          </section>
+        </div>
+        <div class="how-container flex-center">
+          <a href="#" class="how flex-center">?</a>
+  
+          <div class="tutorial">
+            <h2>¿Cómo jugar?</h2>
+  
+            <ul class="flex-center">
+              <li>
+                <p>
+                  El juego consiste en adivinar una palabra oculta, letra por
+                  letra, antes de completar el dibujo de un ahorcado.
+                </p>
+              </li>
+  
+              <li>
+                <p>
+                  Cada que elijas una letra que no esté en la palabra oculta se
+                  dibujara una parte del cuerpo (En total son 6)
+                </p>
+              </li>
+  
+              <li>
+                <p>Al completar la palabra avanzaras al siguiente nivel</p>
+              </li>
+  
+              <li>
+                <p>
+                  Si pasas el cursor sobre el indicador de nivel de arriba a la
+                  derecha podrás ver algunos detalles del nivel
+                </p>
+              </li>
+  
+              <li>
+                <p>Da click en el botón verde para empezar el juego</p>
+              </li>
+  
+              <li>
+                <p>Cada 2 niveles aumentara tu 
+                  <img src="/icons/borrador.png" alt="icono de borrador"><br> (Sirve para borrar una parte del cuerpo)</p>
+              </li>
+  
+              <li>
+                <p>Cada 3 niveles aumentara tu
+                   <img src="/icons/pista.png" alt="icono de pista"><br> (Sirve para obtener una pista)</p>
+              </li>
+  
+              <li>
+                <p>
+                  En total son 10 niveles, al finalizar el nivel 10 tendras la
+                  opción de jugar el modo hardcore
+                </p>
+              </li>
+  
+              <li>
+                <p>
+                  En el modo hardcore no se borran partes del cuerpo al terminar
+                  un nivel
+                </p>
+              </li>
+  
+              <li>
+                <p>
+                  Si pierdes en el modo hardcore tendras que volver al nivel 1
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+
+
+    <footer class="footer">
+      <div class="container flex-center">
+        <p class="credits">Creado por <a href="#">Raymundo Chavez &copy;</a></p>
+      </div>
+    </footer>
+
+    <script src="js/app.js" type="module"></script>
+  </body>
+</html>

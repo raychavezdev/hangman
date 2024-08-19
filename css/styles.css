@@ -1,0 +1,573 @@
+:root {
+  /* LAYOUT */
+  --width-container: 80%;
+  --header-height: 70px;
+  --footer-height: 60px;
+
+  /* COLORS */
+
+  --color-primary: rgb(79, 145, 150);
+  --color-primary-lighten: rgb(126, 216, 223);
+  --color-primary-darken: rgb(65, 114, 118);
+  --color-green: rgb(88, 165, 65);
+  --color-dark-gray: #2b2b2b;
+
+  --color-red: rgb(216, 65, 38);
+  --color-level1: rgb(149, 75, 71);
+  --color-level2: rgb(149, 75, 1);
+  --color-level3: rgb(30, 80, 7);
+  --color-level4: rgb(21, 55, 5);
+  --color-level5: rgb(17, 57, 120);
+  --color-level6: rgb(17, 57, 100);
+  --color-level7: rgb(134, 11, 28);
+  --color-level8: rgb(80, 7, 0);
+  --color-level9: #000;
+  --color-level10: #000;
+
+  --color-win: rgb(59, 165, 100);
+  --color-loose: rgb(184, 53, 30);
+  --color-end: rgb(152, 171, 30);
+  /* Z-INDEX */
+
+  --z-back: -10;
+  --z-normal: 1;
+  --z-front: 10;
+  --z-menu: 100;
+  --z-modal: 1000;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ===========================GLOBAL STYLES=========================== */
+
+body {
+  font-family: sans-serif;
+  background-color: var(--color-primary);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  position: relative;
+  display: grid;
+  align-content: space-between;
+  grid-template-rows: var(--header-height) 1fr var(--footer-height);
+}
+
+.container {
+  width: var(--width-container);
+  margin: 0 auto;
+  position: relative;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  list-style: square;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+p {
+  margin: 0;
+}
+
+
+
+/* ===========================HEADER=========================== */
+
+.header {
+  background-color: var(--color-primary-darken);
+  justify-content: space-between;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.header .container {
+  height: 100%;
+  justify-content: space-between;
+}
+
+.logo {
+  color: #fff;
+  font-size: 1.75rem;
+  display: block;
+}
+
+.header-level {
+  display: block;
+  font-size: 1.1rem;
+  color: var(--color-dark-gray);
+  font-weight: bold;
+  cursor: default;
+  padding: 0.1rem;
+  z-index: var(--z-front);
+  position: relative;
+}
+
+.header-level::before {
+  content: attr(data-info);
+  position: absolute;
+  text-align: center;
+  top: calc(var(--header-height) / 2);
+  background-color: var(--color-primary-darken);
+  padding: 1rem;
+  font-size: 0.75rem;
+  font-weight: lighter;
+  letter-spacing: 2px;
+
+  transform: translateX(-25%);
+  display: none;
+}
+
+.header-level:hover::before {
+  opacity: 1;
+  display: block;
+}
+
+/* ===========================MAIN=========================== */
+
+.main {
+  flex-direction: column;
+  position: relative;
+}
+
+.how-container.active {
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 0.25rem;
+  width: 100%;
+  height: 95%;
+  background-color: var(--color-dark-gray);
+  color: aliceblue;
+  padding: 1rem;
+  filter: brightness(1.2);
+  font-size: 0.75rem;
+  
+}
+
+.how-container {
+  position: absolute;
+  right: 0;
+  top: 1rem;
+}
+
+.how {
+  border: 1px solid var(--color-dark-gray);
+  color: var(--color-dark-gray);
+  font-size: 1.2rem;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+}
+
+.how.active {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: aliceblue;
+  border: none;
+}
+
+.tutorial {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: .75rem;
+  padding: 1rem;
+  height: 100%;
+}
+
+
+.tutorial ul{
+  padding: 0;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.tutorial li{
+  text-align: center;
+  width: 100%;
+}
+
+.tutorial img{
+  filter: invert(1);
+  width: 1.2rem;
+}
+
+/* ===========================GAME CONTAINER=========================== */
+
+.game-container {
+  transition: transform 0.5s, opacity 0.5s;
+  text-align: center;
+  padding-top: 1.25rem;
+}
+
+/* ===========================HANG=========================== */
+
+.btn-start {
+  margin-top: 1rem;
+  width: 9.5rem;
+  height: 3.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--color-green);
+  color: #fff;
+  font-size: 1.25rem;
+  letter-spacing: 0.25rem;
+  transition: transform 0.2s, opacity 0.3s;
+  position: relative;
+}
+
+.level {
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-wrap: nowrap;
+  transition: top 0.3s, font-size 0.3s;
+}
+
+.btn-start::before {
+  content: "";
+  display: block;
+}
+
+.btn-start .level {
+  pointer-events: none;
+}
+
+.btn-start:hover {
+  transform: scale(1.05);
+}
+
+.btn-start:hover .level {
+  font-size: 0.8rem;
+  top: -25%;
+}
+
+.btn-start:hover::before {
+  content: "INICIAR";
+}
+
+.hang-container {
+  margin: 2rem 0;
+  transition: opacity 0.5s;
+}
+
+/* ===========================WORD=========================== */
+
+.word {
+  opacity: 0;
+  gap: 0.5rem;
+  width: 100%;
+  margin: 3rem 0 2rem;
+  transition: transform 0.5s, opacity 0.5s 0.5s;
+}
+
+.line {
+  display: flex;
+  flex-direction: column-reverse;
+  width: 1.25rem;
+  height: 0.25rem;
+  background-color: var(--color-dark-gray);
+  text-align: center;
+  line-height: 2.25rem;
+  font-size: 1.25rem;
+  color: aliceblue;
+  text-transform: uppercase;
+  transition: opacity 0.5s;
+}
+
+.line.clue {
+  color: rgba(240, 248, 255, 0.2);
+}
+
+/* ===========================KEYBOARD=========================== */
+
+.keyboard {
+  user-select: none;
+  flex-direction: column;
+  gap: 0.5rem;
+  pointer-events: none;
+  opacity: 0.3;
+  transform: translateY(-3.5em);
+  transition: opacity 0.5s, transform 0.5s 0.2s;
+}
+
+.keyboard > div {
+  gap: 0.3rem;
+}
+
+.key {
+  width: 1.75rem;
+  height: 1.5rem;
+  border-radius: 0.25rem;
+  transition: opacity 0.3s;
+}
+.key:hover {
+  transform: scale(1.1);
+}
+
+.key:active {
+  transform: scale(1);
+}
+
+.keyboard .powers {
+  position: relative;
+  top: 1rem;
+  width: 100%;
+  gap: 2rem;
+}
+
+.powers button {
+  background-color: var(--color-primary-darken);
+  font-weight: bold;
+  border-radius: 0.25rem;
+  width: 3rem;
+  height: 1.75rem;
+  position: relative;
+  transition: opacity 0.2s;
+}
+
+.powers img{
+  width: 1.3rem;
+}
+
+.powers button:hover {
+  transform: scale(1.05);
+}
+
+.powers button::after {
+  content: attr(data-try);
+  display: block;
+  background-color: var(--color-green);
+  position: absolute;
+  padding: 0.15rem;
+  border-radius: 0.25rem;
+  right: -5%;
+  top: -10%;
+}
+
+
+
+/* ===========================FOOTER=========================== */
+
+.footer {
+  background-color: var(--color-dark-gray);
+  height: var(--footer-height);
+  text-align: center;
+}
+
+.footer .container {
+  height: 100%;
+  color: gray;
+}
+
+.footer a {
+  display: inline;
+
+  color: darkgray;
+}
+
+.footer a:hover{
+  color: var(--color-primary);
+}
+
+/*=========================== MODAL ===========================*/
+
+.modal {
+  border-radius: 0.5rem;
+  padding: 1rem;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 150px;
+  z-index: var(--z-modal);
+  color: aliceblue;
+  flex-direction: column;
+  justify-content: space-around;
+  transition: opacity 0.6s;
+}
+
+.modal-text {
+  font-size: 2rem;
+}
+
+.modal-buttons {
+  gap: 2rem;
+}
+
+[class*="modal-btn"] {
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+}
+
+/*=========================== ANIMATIONS *===========================*/
+.hide {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.show {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.block {
+  pointer-events: none;
+  opacity: 0.2;
+}
+
+.red {
+  background-color: var(--color-red);
+}
+
+.game-start {
+  transform: translateY(-4rem);
+  justify-content: space-between;
+}
+
+.kb-start {
+  transform: translateY(0);
+}
+
+.word-win {
+  transform: translateY(2em);
+}
+
+.no-pointer {
+  pointer-events: none;
+}
+
+@keyframes clue {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.logo.end {
+  position: relative;
+  right: -50%;
+  transform: translateX(-50%);
+  transition: right 1s;
+}
+
+.final-msg {
+  font-size: 3rem;
+  background-color: transparent;
+  color: var(--color-end);
+  filter: brightness(1.3);
+  pointer-events: none;
+}
+
+.final-msg::after {
+  content: "El juego ha terminado";
+  display: block;
+  font-size: 1rem;
+}
+
+.credits {
+  transition: transform 1.5s;
+}
+
+.credits.end {
+  transform: translateY(-10em);
+  color: var(--color-dark-gray);
+  font-size: 1.2rem;
+}
+
+.credits.end a {
+  color: var(--color-end);
+}
+
+.tutorial.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* =================================================================== */
+
+/* ===========================MEDIA QUERIES=========================== */
+
+/* =================================================================== */
+
+
+@media screen and (max-width: 480px) {
+  .main .container{
+    width: 95%;
+  }
+  .word{
+    gap: .25rem;
+  }
+
+  .line{
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  /* ===========================KEYBOARD=========================== */
+  .key {
+    width: 2.25rem;
+    height: 2rem;
+  }
+  
+
+  .powers button {
+    width: 3.25rem;
+    height: 2rem;
+  }
+
+  .how-container.active {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  /* ===========================KEYBOARD=========================== */
+  .key {
+    width: 2.75rem;
+    height: 2.5rem;
+  }
+ 
+  .word-win {
+    transform: scale(1.2) translateY(4.5em);
+  }
+
+  .modal {
+    width: 400px;
+    height: 200px;
+  }
+
+  .powers button {
+    width: 3.5rem;
+    height: 2.25rem;
+  }
+
+  .how-container.active {
+    font-size: 1rem;
+  }
+}
